@@ -1,69 +1,119 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
-<meta name="theme-color" content="#06080d">
-<title>BLACK//SIGHT — Mobile FPS</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+  <meta name="theme-color" content="#06090d">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <title>VANGUARD // Mobile Tactical FPS</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<main id="gameShell">
-  <canvas id="game"></canvas>
-  <div id="grain"></div><div id="flash"></div>
+  <main id="game">
+    <canvas id="canvas"></canvas>
 
-  <section id="hud">
-    <div class="topbar">
-      <div class="brand"><span>BLACK</span><i>//</i>SIGHT <small>TACTICAL FPS</small></div>
-      <div class="topstat"><b id="wave">01</b><small>WAVE</small></div>
-      <div class="topstat"><b id="score">000000</b><small>SCORE</small></div>
-    </div>
-    <div class="crosshair"><span></span><span></span><span></span><span></span><em></em></div>
-    <div class="bottom-hud">
-      <div class="vitals"><div><small>HP</small><b id="hp">100</b></div><div><small>ARMOR</small><b id="armor">75</b></div></div>
-      <div class="ammo"><strong id="ammo">12</strong><span>/ 84</span><small id="reloadText">READY</small></div>
-    </div>
-    <div class="killfeed" id="killfeed"></div>
-  </section>
+    <section id="menu">
+      <div class="scanlines"></div>
+      <div class="grid"></div>
+      <header class="brand">
+        <div class="brand-mark"><i></i><i></i><i></i></div>
+        <div><small>VANGUARD PROTOCOL</small><h1>TACTICAL <span>FPS</span></h1></div>
+      </header>
 
-  <div id="startScreen" class="screen show">
-    <div class="panel">
-      <div class="kicker">MOBILE COMBAT SIMULATION</div>
-      <h1>BLACK<span>//</span>SIGHT</h1>
-      <p>Yatay tut. Sola dokun ve hareket et, sağ tarafta parmağınla çevreyi tara. Düşmanları temizle, dalgayı bitir ve ekipmanını güçlendir.</p>
-      <div class="tips"><span><b>◉</b> SOL JOYSTICK<br><small>HAREKET</small></span><span><b>◌</b> SAĞ ALAN<br><small>NİŞAN</small></span><span><b>▣</b> FIRE<br><small>ATEŞ</small></span></div>
-      <button id="play" class="mainBtn">OPERASYONA BAŞLA</button>
-      <small class="rotate">↻ TELEFONU YATAY ÇEVİR • TAM EKRAN İÇİN DOKUN</small>
-      <div class="credit">MADE BY <b>OMER.FRKN58</b></div>
-    </div>
-  </div>
+      <div class="hero">
+        <div class="kicker">MOBILE WEB EDITION</div>
+        <h2>LOCK. AIM.<br><span>DOMINATE.</span></h2>
+        <p>Telefon için tasarlanmış, yatay ekranlı, dokunmatik kontrollü taktik FPS prototipi.</p>
+        <div class="mode-grid">
+          <button class="mode active"><b>SPIKE RUSH</b><small>5v5 • ROUND BASED</small></button>
+          <button class="mode"><b>RANGE</b><small>AIM TRAINING</small></button>
+        </div>
+        <button id="playBtn" class="primary">OYUNA BAŞLA <b>▶</b></button>
+        <div class="tips">
+          <span>◉ SOL: HAREKET</span>
+          <span>◎ SAĞ: BAKIŞ</span>
+          <span>◌ FIRE: ATEŞ</span>
+          <span>↻ RELOAD</span>
+        </div>
+      </div>
 
-  <div id="deadScreen" class="screen">
-    <div class="panel smallPanel">
-      <div class="kicker">MISSION FAILED</div><h2>SİNYAL KESİLDİ</h2>
-      <div class="result"><b id="finalScore">000000</b><span>SCORE</span><b id="finalWave">01</b><span>WAVE</span></div>
-      <button id="again" class="mainBtn">TEKRAR GİR</button>
-      <div class="credit">BLACK//SIGHT • <b>OMER.FRKN58</b></div>
-    </div>
-  </div>
+      <footer>WEB FPS PROTOTYPE • MADE FOR MOBILE</footer>
+    </section>
 
-  <div id="upgradeScreen" class="screen">
-    <div class="panel upgradePanel">
-      <div class="kicker">WAVE CLEARED</div><h2>LOADOUT GÜNCELLENİYOR</h2>
-      <div id="upgrades" class="upgradeGrid"></div>
-      <div class="credit">BLACK//SIGHT • <b>OMER.FRKN58</b></div>
-    </div>
-  </div>
+    <section id="hud" class="hidden">
+      <div class="topbar">
+        <div class="score ally"><small>ALLY</small><b id="allyScore">0</b></div>
+        <div class="round-info">
+          <small id="roundLabel">ROUND 01</small>
+          <b id="timer">01:40</b>
+          <span id="objective">ELIMINATE ALL ENEMIES</span>
+        </div>
+        <div class="score enemy"><small>ENEMY</small><b id="enemyScore">0</b></div>
+      </div>
 
-  <div id="touchUI">
-    <div id="moveStick" class="stickPad"><div class="stickDot"></div><label>MOVE</label></div>
-    <div id="lookZone"><label>LOOK</label></div>
-    <button id="fireBtn" class="round fire">FIRE</button>
-    <button id="reloadBtn" class="round reload">↻</button>
-    <button id="dashBtn" class="round dash">DASH</button>
-  </div>
-  <div id="portraitMsg">TELEFONU YATAY ÇEVİR</div>
-</main>
-<script src="script.js"></script>
+      <div class="mini-wrap">
+        <canvas id="minimap" width="180" height="180"></canvas>
+        <small>TACTICAL MAP</small>
+      </div>
+
+      <div class="reticle" id="reticle">
+        <span class="r1"></span><span class="r2"></span><span class="r3"></span><span class="r4"></span><i></i>
+      </div>
+
+      <div class="damage-flash" id="damageFlash"></div>
+      <div class="hit-confirm" id="hitConfirm">✦</div>
+
+      <div class="bottom-left">
+        <div class="health-pack">
+          <div class="health-num" id="hp">100</div>
+          <div class="health-track"><span id="hpFill"></span></div>
+          <div class="shield-num" id="shield">50</div>
+        </div>
+        <small>HEALTH / SHIELD</small>
+      </div>
+
+      <div class="weapon">
+        <small>VX-01 // ASSAULT RIFLE</small>
+        <div><b id="ammo">25</b><span>/ 75</span></div>
+        <em id="reloadText"></em>
+      </div>
+
+      <div class="abilities">
+        <button class="ability" id="qBtn"><kbd>Q</kbd><span>FLASH</span></button>
+        <button class="ability active" id="eBtn"><kbd>E</kbd><span>DASH</span></button>
+        <button class="ability" id="cBtn"><kbd>C</kbd><span>SMOKE</span></button>
+        <button class="ability ult" id="xBtn"><kbd>X</kbd><span>ULT <i id="ult">●●○</i></span></button>
+      </div>
+
+      <div id="killFeed"></div>
+
+      <div id="mobileControls" class="hidden">
+        <div id="moveZone" class="move-zone">
+          <div class="joy"><div id="knob"></div></div>
+          <small>MOVE</small>
+        </div>
+        <div id="lookZone" class="look-zone"></div>
+        <button id="fireBtn" class="mobile-btn fire">FIRE</button>
+        <button id="reloadBtn" class="mobile-btn reload">↻</button>
+        <button id="jumpBtn" class="mobile-btn jump">JUMP</button>
+        <button id="crouchBtn" class="mobile-btn crouch">C</button>
+        <button id="eMobileBtn" class="mobile-btn skill">E</button>
+        <button id="qMobileBtn" class="mobile-btn skill2">Q</button>
+      </div>
+
+      <div class="orientation-note" id="orientationNote">
+        <div>⟳</div><b>TELEFONU YATAY ÇEVİR</b><small>Yatay ekran olmadan oyun kontrolleri kapanır.</small>
+      </div>
+    </section>
+
+    <section id="roundOverlay" class="hidden">
+      <small>ROUND COMPLETE</small>
+      <h2 id="result">VICTORY</h2>
+      <p id="reason">Tüm rakipler etkisiz hale getirildi.</p>
+      <button id="nextRound" class="primary">SONRAKİ ROUND</button>
+    </section>
+  </main>
+  <script src="script.js"></script>
 </body>
 </html>
