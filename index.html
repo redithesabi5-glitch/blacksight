@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#06080d">
+<title>BLACK//SIGHT — Mobile FPS</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main id="gameShell">
+  <canvas id="game"></canvas>
+  <div id="grain"></div><div id="flash"></div>
+
+  <section id="hud">
+    <div class="topbar">
+      <div class="brand"><span>BLACK</span><i>//</i>SIGHT <small>TACTICAL FPS</small></div>
+      <div class="topstat"><b id="wave">01</b><small>WAVE</small></div>
+      <div class="topstat"><b id="score">000000</b><small>SCORE</small></div>
+    </div>
+    <div class="crosshair"><span></span><span></span><span></span><span></span><em></em></div>
+    <div class="bottom-hud">
+      <div class="vitals"><div><small>HP</small><b id="hp">100</b></div><div><small>ARMOR</small><b id="armor">75</b></div></div>
+      <div class="ammo"><strong id="ammo">12</strong><span>/ 84</span><small id="reloadText">READY</small></div>
+    </div>
+    <div class="killfeed" id="killfeed"></div>
+  </section>
+
+  <div id="startScreen" class="screen show">
+    <div class="panel">
+      <div class="kicker">MOBILE COMBAT SIMULATION</div>
+      <h1>BLACK<span>//</span>SIGHT</h1>
+      <p>Yatay tut. Sola dokun ve hareket et, sağ tarafta parmağınla çevreyi tara. Düşmanları temizle, dalgayı bitir ve ekipmanını güçlendir.</p>
+      <div class="tips"><span><b>◉</b> SOL JOYSTICK<br><small>HAREKET</small></span><span><b>◌</b> SAĞ ALAN<br><small>NİŞAN</small></span><span><b>▣</b> FIRE<br><small>ATEŞ</small></span></div>
+      <button id="play" class="mainBtn">OPERASYONA BAŞLA</button>
+      <small class="rotate">↻ TELEFONU YATAY ÇEVİR • TAM EKRAN İÇİN DOKUN</small>
+      <div class="credit">MADE BY <b>OMER.FRKN58</b></div>
+    </div>
+  </div>
+
+  <div id="deadScreen" class="screen">
+    <div class="panel smallPanel">
+      <div class="kicker">MISSION FAILED</div><h2>SİNYAL KESİLDİ</h2>
+      <div class="result"><b id="finalScore">000000</b><span>SCORE</span><b id="finalWave">01</b><span>WAVE</span></div>
+      <button id="again" class="mainBtn">TEKRAR GİR</button>
+      <div class="credit">BLACK//SIGHT • <b>OMER.FRKN58</b></div>
+    </div>
+  </div>
+
+  <div id="upgradeScreen" class="screen">
+    <div class="panel upgradePanel">
+      <div class="kicker">WAVE CLEARED</div><h2>LOADOUT GÜNCELLENİYOR</h2>
+      <div id="upgrades" class="upgradeGrid"></div>
+      <div class="credit">BLACK//SIGHT • <b>OMER.FRKN58</b></div>
+    </div>
+  </div>
+
+  <div id="touchUI">
+    <div id="moveStick" class="stickPad"><div class="stickDot"></div><label>MOVE</label></div>
+    <div id="lookZone"><label>LOOK</label></div>
+    <button id="fireBtn" class="round fire">FIRE</button>
+    <button id="reloadBtn" class="round reload">↻</button>
+    <button id="dashBtn" class="round dash">DASH</button>
+  </div>
+  <div id="portraitMsg">TELEFONU YATAY ÇEVİR</div>
+</main>
+<script src="script.js"></script>
+</body>
+</html>
